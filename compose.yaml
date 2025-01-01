@@ -1,25 +1,14 @@
 services:
-  app:
-    image: node:18-alpine
-    command: sh -c "yarn install && yarn run dev"
-    ports:
-      - 127.0.0.1:3000:3000
-    working_dir: /app
-    volumes:
-      - ./:/app
-    environment:
-      MYSQL_HOST: mysql
-      MYSQL_USER: root
-      MYSQL_PASSWORD: secret
-      MYSQL_DB: todos
-
-  mysql:
-    image: mysql:8.0
-    volumes:
-      - todo-mysql-data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: todos
-
-volumes:
-  todo-mysql-data:
+    app:
+        image: node:18-alpine
+        command: sh -c "yarn install && yarn run dev"
+        ports:
+            - 127.0.0.1:3000:3000
+        working_dir: /app
+        volumes:
+            - ./:/app
+        environment:
+            MYSQL_HOST: my-todo-db.us-east-1.rds.amazonaws.com # Replace with your RDS endpoint
+            MYSQL_USER: admin # Replace with your RDS username
+            MYSQL_PASSWORD: password123 # Replace with your RDS password
+            MYSQL_DB: todos
