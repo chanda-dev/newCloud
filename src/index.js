@@ -1,6 +1,7 @@
 const mysql = require('mysql2');
 require('dotenv').config();
-
+const express = require('express');
+const app = express();
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -14,6 +15,10 @@ connection.connect(err => {
     return;
   }
   console.log('Connected to the MySQL database.');
+});
+
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
 });
 
 module.exports = connection; // Export the connection object
